@@ -16,13 +16,13 @@ jobs:
       with:
         submodules: recursive
     - name: Configure CMake
-      run: cmake -B /build
+      run: cmake -B ${{ github.workspace }}/build
 
     - name: Build CMake
-      run: cmake --build /build
+      run: cmake --build ${{ github.workspace }}/build
 
     - name: Test
-      run: cmake --build /build --target test
+      run: cmake --build ${{ github.workspace }}/build --target test
 
     - name: Run
       run: |

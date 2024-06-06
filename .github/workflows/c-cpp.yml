@@ -26,5 +26,5 @@ jobs:
 
     - name: Run
       run: |
-        cd /build
+        cd ${{ github.workspace }}/build
         tests

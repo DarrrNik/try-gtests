@@ -4,7 +4,7 @@ set(CMAKE_BUILD_TYPE Release)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(gtest)
+add_subdirectory(googletest)
 
 add_library(Math src/Math.cpp)
 target_include_directories(Math PUBLIC include)
@@ -17,7 +17,7 @@ target_link_libraries(try_gtests Math)
 
 enable_testing()
 add_executable(tests tests/src/main.cpp)
-target_include_directories(tests PUBLIC tests/include "gtest/googletest/include")
+target_include_directories(tests PUBLIC tests/include "googletest/googletest/include")
 target_link_libraries(tests Math GTest::gtest_main)
 
 include(GoogleTest)

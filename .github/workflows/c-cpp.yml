@@ -1,0 +1,27 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Configure CMake
+      run: cmake -B ${{ github.workspace }}/build
+
+    - name: Build CMake
+      run: cmake --build ${{ github.workspace }}/build
+
+    - name: Test
+      run: cmake --build ${{ github.workspace }}/build --target test
+
+    - name: Run
+      run: |
+        cd ${{ github.workspace }}/build
+        tests

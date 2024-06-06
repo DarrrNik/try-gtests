@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ##set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 #FetchContent_MakeAvailable(googletest)
 
-add_subdirectory()
+add_subdirectory(gtest)
 
 add_library(Math src/Math.cpp)
 target_include_directories(Math PUBLIC include)

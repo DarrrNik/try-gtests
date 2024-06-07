@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 3.29.3)
+project(try_gtests)
+set(CMAKE_BUILD_TYPE Release)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+add_subdirectory(googletest)
+
+enable_testing()
+add_executable(tests src/main.cpp)
+target_include_directories(tests PUBLIC include "../googletest/googletest/include")
+target_link_libraries(tests Math GTest::gtest_main)
+
+include(GoogleTest)
+gtest_discover_tests(tests)

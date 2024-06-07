@@ -16,8 +16,8 @@ target_include_directories(try_gtests
 target_link_libraries(try_gtests Math)
 
 enable_testing()
-add_executable(tests src/main.cpp)
-target_include_directories(tests PUBLIC include "../googletest/googletest/include")
+add_executable(tests tests/src/main.cpp)
+target_include_directories(tests PUBLIC include "googletest/include")
 target_link_libraries(tests Math GTest::gtest_main)
 
 include(GoogleTest)

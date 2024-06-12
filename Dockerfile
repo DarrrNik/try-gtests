@@ -1,4 +1,4 @@
-FROM gcc:latest as build
+FROM gcc:latest as builder
 
 WORKDIR /gtest_build
 RUN apt-get update && \
@@ -9,15 +9,14 @@ RUN apt-get update && \
   cmake -DCMAKE_BUILD_TYPE=Release /usr/src/gtest && \
   cmake --build .
 
-ADD ./src /app/src
-WORKDIR /app/build
+WORKDIR /build
 
-RUN cmake / && \
+RUN cmake ./ && \
   cmake --build . && \
   CTEST_OUTPUT_ON_FAILURE=TRUE cmake --build . --target test
 
 FROM ubuntu:latest
-WORKDIR /app
-COPY --from=build /app/build/try_gtests .
+WORKDIR ./
+COPY --from=builder /build/try_gtests .
 ENTRYPOINT ["./try_gtests"]
 

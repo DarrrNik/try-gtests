@@ -17,4 +17,3 @@ FROM ubuntu:latest
 WORKDIR /
 COPY --from=builder /try_gtests/build/try_gtests .
 ENTRYPOINT ["./try_gtests"]
-

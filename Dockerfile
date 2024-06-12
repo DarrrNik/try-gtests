@@ -12,7 +12,7 @@ RUN apt-get update && \
 ADD ./src /app/src
 WORKDIR /app/build
 
-RUN cmake .. && \
+RUN cmake /app && \
   cmake --build . && \
   CTEST_OUTPUT_ON_FAILURE=TRUE cmake --build . --target test
 

@@ -8,8 +8,10 @@ RUN apt-get update && \
   && \
   cmake -DCMAKE_BUILD_TYPE=Release /usr/src/gtest && \
   cmake --build .
+  
+RUN git clone https://github.com/DarrrNik/try-gtests /try_gtests
 
-WORKDIR /build
+WORKDIR /try_gtests/build
 
 RUN cmake ../ && \
   cmake --build . && \

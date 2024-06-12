@@ -22,3 +22,4 @@ FROM ubuntu:latest
 WORKDIR /app
 COPY --from=build /app/build/try_gtests .
 ENTRYPOINT ["./try_gtests"]
+

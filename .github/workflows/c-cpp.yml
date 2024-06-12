@@ -27,7 +27,12 @@ jobs:
 
     - name: Test
       run: cmake --build ${{ github.workspace }}/build --target test
-    
+    - name: Make zip directory
+      run: |
+          mkdir compiled
+          mv **/*.a compiled
+          zip -r compiled.zip compiled
+
     - name: Release
       id: create_release
       uses: actions/create-release@v1
@@ -45,6 +50,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/build
-          asset_name: bin
-          asset_content_type: application/octet-stream
+          asset_path: ./compiled.zip
+          asset_name: compiled.zip
+          asset_content_type: application/zip

@@ -25,12 +25,22 @@ jobs:
       run: cmake --build ${{ github.workspace }}/build --target test
     
     - name: Release
+      id: create_release
       uses: actions/create-release@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        asset_name: try_gtests
-        release_name: try_gtests
-        tag: v1.0.0
-        file: tasks
-        overwrite: true
-        file_glob: true
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+          
+    - name: Publishing
+      uses: actions/upload-release-asset@v1
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ${{ github.workspace }}/build
+          asset_name: bin
+          asset_content_type: application/octet-stream

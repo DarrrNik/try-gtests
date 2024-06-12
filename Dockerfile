@@ -5,7 +5,7 @@ RUN apt-get update && \
   apt-get install -y \
     cmake
   
-RUN git clone https://github.com/DarrrNik/try-gtests /try_gtests
+RUN git clone --recursive https://github.com/DarrrNik/try-gtests /try_gtests
 
 WORKDIR /try_gtests/build
 

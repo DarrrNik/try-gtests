@@ -15,6 +15,6 @@ RUN cmake ../ && \
 
 FROM ubuntu:latest
 WORKDIR /
-COPY --from=builder /build/try_gtests .
+COPY --from=builder /try_gtests/build/try_gtests .
 ENTRYPOINT ["./try_gtests"]
 

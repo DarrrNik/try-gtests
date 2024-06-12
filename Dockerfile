@@ -3,7 +3,6 @@ FROM gcc:latest as builder
 WORKDIR /gtest_build
 RUN apt-get update && \
   apt-get install -y \
-    libgtest-dev \
     cmake \
   && \
   cmake -DCMAKE_BUILD_TYPE=Release /usr/src/gtest && \

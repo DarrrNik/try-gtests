@@ -11,12 +11,12 @@ RUN apt-get update && \
 
 WORKDIR /build
 
-RUN cmake ./ && \
+RUN cmake ../ && \
   cmake --build . && \
   CTEST_OUTPUT_ON_FAILURE=TRUE cmake --build . --target test
 
 FROM ubuntu:latest
-WORKDIR ./
+WORKDIR /
 COPY --from=builder /build/try_gtests .
 ENTRYPOINT ["./try_gtests"]
 
